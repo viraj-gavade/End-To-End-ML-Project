@@ -1,11 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to the home page</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Home - Student Performance Prediction{% endblock %}
+
+{% block content %}
+<h1>Student Performance Prediction</h1>
+
+<div class="row" style="text-align: center;">
+    <div class="col">
+        <img src="{{ url_for('static', filename='images/education.png') }}" alt="Education" style="max-width: 80%; height: auto; margin-bottom: 20px;">
+    </div>
+    <div class="col" style="text-align: left;">
+        <h2>Welcome to Student Performance Predictor</h2>
+        <p>This application uses machine learning to predict student math scores based on various factors.</p>
+        <p>Our model analyzes factors such as:</p>
+        <ul>
+            <li>Gender</li>
+            <li>Race/Ethnicity</li>
+            <li>Parental Education Level</li>
+            <li>Lunch Type</li>
+            <li>Test Preparation</li>
+            <li>Reading and Writing Scores</li>
+        </ul>
+        <p>Use our tool to predict student performance and identify areas for improvement.</p>
+        
+        <a href="/predict">
+            <button style="margin-top: 20px; width: 250px;">Start Prediction</button>
+        </a>
+        <a href="/visualize">
+            <button style="margin-top: 10px; background-color: #27ae60; width: 250px;">View Visualizations</button>
+        </a>
+    </div>
+</div>
+
+<div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
+    <h2>How It Works</h2>
+    <div class="row">
+        <div class="col">
+            <h3>1. Enter Student Data</h3>
+            <p>Provide information about the student including demographic details and current academic performance.</p>
+        </div>
+        <div class="col">
+            <h3>2. AI Analysis</h3>
+            <p>Our machine learning model processes the data using patterns learned from thousands of student records.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>3. Get Predictions</h3>
+            <p>Receive an accurate prediction of the student's expected performance in mathematics.</p>
+        </div>
+        <div class="col">
+            <h3>4. Analyze Results</h3>
+            <p>Use visualizations and insights to understand factors affecting performance.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Visualizations - Student Performance Prediction{% endblock %}
+
+{% block content %}
+<h1>Data Visualizations</h1>
+
+<div class="row" style="margin-bottom: 30px;">
+    <div class="col" style="text-align: center;">
+        <h2>Explore the Data</h2>
+        <p>These visualizations help you understand the relationships between various factors and student performance.</p>
+    </div>
+</div>
+
+<div class="chart-container">
+    {% for chart in charts %}
+    <div class="chart">
+        <h3>{{ chart.title }}</h3>
+        <img src="{{ url_for('static', filename='images/charts/' + chart.filename) }}" alt="{{ chart.title }}">
+        <p>{{ chart.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="margin-top: 40px; text-align: center;">
+    <h2>Key Insights from the Data</h2>
+    <div class="row" style="text-align: left; margin-top: 20px;">
+        <div class="col">
+            <h3>Gender Impact</h3>
+            <p>Female students tend to perform slightly better in reading and writing scores, while gender doesn't show a strong correlation with math performance.</p>
+        </div>
+        <div class="col">
+            <h3>Parental Education</h3>
+            <p>Students whose parents have higher education levels (Bachelor's or Master's degrees) generally show better overall performance.</p>
+        </div>
+    </div>
+    
+    <div class="row" style="text-align: left; margin-top: 20px;">
+        <div class="col">
+            <h3>Test Preparation</h3>
+            <p>Students who complete test preparation courses show significantly higher average scores across all subject areas.</p>
+        </div>
+        <div class="col">
+            <h3>Lunch Impact</h3>
+            <p>Students with standard lunch programs tend to show better performance than those with free/reduced lunch programs, which may indicate socioeconomic factors.</p>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; text-align: center;">
+    <h2>Try the Prediction Tool</h2>
+    <p>Use our machine learning model to predict student math scores based on these factors.</p>
+    <a href="/predict">
+        <button style="margin-top: 10px;">Go to Prediction Tool</button>
+    </a>
+</div>
+{% endblock %}

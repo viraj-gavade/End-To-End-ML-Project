@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}About - Student Performance Prediction{% endblock %}
+
+{% block content %}
+<div class="about-section">
+    <h1>About This Project</h1>
+    
+    <div class="row">
+        <div class="col">
+            <img src="{{ url_for('static', filename='images/about.png') }}" alt="About" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+        <div class="col">
+            <h2>Project Overview</h2>
+            <p>The Student Performance Prediction application is a machine learning-based tool designed to predict students' math scores based on various factors. This project aims to help educators, parents, and students understand the impact of different variables on academic performance.</p>
+            
+            <h3>Purpose</h3>
+            <p>By analyzing patterns in student data, we can identify key factors that influence academic success and provide targeted interventions to improve learning outcomes.</p>
+        </div>
+    </div>
+    
+    <h2>The Dataset</h2>
+    <p>This project is built using the "Student Performance Dataset" which contains information about:</p>
+    <ul>
+        <li>Gender (male/female)</li>
+        <li>Race/ethnicity (groups A-E)</li>
+        <li>Parental level of education</li>
+        <li>Lunch type (standard or free/reduced)</li>
+        <li>Test preparation course completion status</li>
+        <li>Reading, writing, and math scores</li>
+    </ul>
+    
+    <h2>Machine Learning Model</h2>
+    <p>We've trained several regression models on the dataset and selected the best performing one based on accuracy metrics. Our model analyzes the relationship between various factors and math scores to make accurate predictions.</p>
+    
+    <h3>Technologies Used</h3>
+    <ul>
+        <li><strong>Python:</strong> Core programming language</li>
+        <li><strong>Scikit-learn & XGBoost:</strong> For building machine learning models</li>
+        <li><strong>Pandas & NumPy:</strong> For data manipulation</li>
+        <li><strong>Matplotlib & Seaborn:</strong> For data visualization</li>
+        <li><strong>Flask:</strong> Web framework for the application</li>
+    </ul>
+    
+    <h2>Project Development</h2>
+    <p>This project was developed following these steps:</p>
+    <ol>
+        <li>Exploratory Data Analysis (EDA) to understand patterns and relationships</li>
+        <li>Data preprocessing and feature engineering</li>
+        <li>Model selection and hyperparameter tuning</li>
+        <li>Web application development using Flask</li>
+        <li>Deployment and monitoring</li>
+    </ol>
+    
+    <h2>Developer</h2>
+    <p>This application was developed by Viraj Gavade as part of the Machine Learning Bootcamp by Krish Naik.</p>
+    
+    <h2>Future Improvements</h2>
+    <p>We plan to enhance this application with:</p>
+    <ul>
+        <li>More advanced visualization options</li>
+        <li>Feature importance analysis</li>
+        <li>Expanded dataset with more variables</li>
+        <li>User accounts to save and track predictions</li>
+    </ul>
+</div>
+{% endblock %}
