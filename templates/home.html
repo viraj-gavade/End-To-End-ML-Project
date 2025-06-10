@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .col {
+            flex-basis: 48%;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+            width: 200px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .prediction-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .prediction-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .prediction-details li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Performance Prediction</h1>
+        <form action="/predictdata" method="post">
+            <div class="row">
+                <div class="col form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="col form-group">
+                    <label for="race_ethnicity">Race/Ethnicity:</label>
+                    <select id="race_ethnicity" name="race_ethnicity" required>
+                        <option value="">Select Race/Ethnicity</option>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="parental_level_of_education">Parental Level of Education:</label>
+                <select id="parental_level_of_education" name="parental_level_of_education" required>
+                    <option value="">Select Education Level</option>
+                    <option value="bachelor's degree">Bachelor's Degree</option>
+                    <option value="some college">Some College</option>
+                    <option value="master's degree">Master's Degree</option>
+                    <option value="associate's degree">Associate's Degree</option>
+                    <option value="high school">High School</option>
+                    <option value="some high school">Some High School</option>
+                </select>
+            </div>
+            
+            <div class="row">
+                <div class="col form-group">
+                    <label for="lunch">Lunch Type:</label>
+                    <select id="lunch" name="lunch" required>
+                        <option value="">Select Lunch Type</option>
+                        <option value="standard">Standard</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                    </select>
+                </div>
+                <div class="col form-group">
+                    <label for="test_preparation_course">Test Preparation Course:</label>
+                    <select id="test_preparation_course" name="test_preparation_course" required>
+                        <option value="">Select Option</option>
+                        <option value="none">None</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col form-group">
+                    <label for="reading_score">Reading Score:</label>
+                    <input type="number" id="reading_score" name="reading_score" min="0" max="100" required placeholder="Enter score (0-100)">
+                </div>
+                <div class="col form-group">
+                    <label for="writing_score">Writing Score:</label>
+                    <input type="number" id="writing_score" name="writing_score" min="0" max="100" required placeholder="Enter score (0-100)">
+                </div>
+            </div>
+            
+            <button type="submit">Predict Math Score</button>
+        </form>
+        
+        <!-- Result section will be shown if prediction exists -->
+        {% if prediction %}
+        <div id="result" class="result-section">
+            <h3>Predicted Math Score:</h3>
+            <p id="prediction-value" style="font-size: 24px; font-weight: bold; text-align: center;">{{ prediction }}</p>
+            
+            <div class="prediction-details">
+                <h4>Input Values:</h4>
+                <ul>
+                    <li><strong>Gender:</strong> {{ gender }}</li>
+                    <li><strong>Race/Ethnicity:</strong> {{ race_ethnicity }}</li>
+                    <li><strong>Parental Education:</strong> {{ parental_level_of_education }}</li>
+                    <li><strong>Lunch:</strong> {{ lunch }}</li>
+                    <li><strong>Test Preparation:</strong> {{ test_preparation_course }}</li>
+                    <li><strong>Reading Score:</strong> {{ reading_score }}</li>
+                    <li><strong>Writing Score:</strong> {{ writing_score }}</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h1>Prection is : {{prediction_text}}</h1>
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        // Pre-fill form if there are values
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if gender %}
+            document.getElementById('gender').value = "{{ gender }}";
+            document.getElementById('race_ethnicity').value = "{{ race_ethnicity }}";
+            document.getElementById('parental_level_of_education').value = "{{ parental_level_of_education }}";
+            document.getElementById('lunch').value = "{{ lunch }}";
+            document.getElementById('test_preparation_course').value = "{{ test_preparation_course }}";
+            document.getElementById('reading_score').value = "{{ reading_score }}";
+            document.getElementById('writing_score').value = "{{ writing_score }}";
+            {% endif %}
+        });
+    </script>
+</body>
+</html>
