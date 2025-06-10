@@ -29,6 +29,7 @@ class DataTransformation:
         '''
         try:
             numerical_features = ['writing_score','reading_score']
+            
             categorical_feature = [
                 'gender',
             'race_ethnicity',

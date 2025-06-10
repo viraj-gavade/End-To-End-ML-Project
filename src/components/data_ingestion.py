@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation,DataTransformationConfig
+from src.components.model_trainer import ModelTrainer , ModelTrainerConfig
 
 @dataclass
 class DataInjetionConfig:
@@ -28,6 +29,7 @@ class DataInjetion:
             os.makedirs(os.path.dirname(self.injetion_config.train_data_path),exist_ok=True)
 
             df.to_csv(self.injetion_config.raw_data_path,index=False,header=True)
+
             logging.info('Trian test split is initiated')
 
             train_set,test_set = train_test_split(df,test_size=0.2,random_state=42)
@@ -57,5 +59,7 @@ if __name__ == '__main__':
     train_data , test_data = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_array,test_array,_= data_transformation.initiate_data_transformation(train_data,test_data)
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_array=train_array,test_array=test_array))
         
