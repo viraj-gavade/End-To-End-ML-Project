@@ -5,7 +5,7 @@ from src.logger import logging
 from dataclasses import dataclass
 import pandas as pd 
 from sklearn.model_selection import train_test_split
-
+from src.components.data_tranformation import DataTranformation
 
 
 @dataclass
@@ -61,4 +61,9 @@ if __name__ == "__main__":
     train_path , test_path = ingestion_object.initiate_data_ingestion('notebooks\data\stud.csv')
     print('Train path : ' , train_path)
     print('Test Path : ' , test_path)
+    tranformation_object = DataTranformation()
+    train_arr , test_arr = tranformation_object.initiate_data_tranformation(train_path, test_path)
+    print('Train path : ' , train_arr)
+    print('Test Path : ' , test_arr)
+
 
